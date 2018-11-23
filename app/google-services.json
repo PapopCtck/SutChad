@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "290297494040",
+    "firebase_url": "https://sutchad-5179a.firebaseio.com",
+    "project_id": "sutchad-5179a",
+    "storage_bucket": "sutchad-5179a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290297494040:android:ffb3c23a73202425",
+        "android_client_info": {
+          "package_name": "com.example.dppra.login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290297494040-6v4gmphluc68mti8v3lpasampi9d617n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9zYYLud5_nIgoMzH9n4XLNuFgNNrosF4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
