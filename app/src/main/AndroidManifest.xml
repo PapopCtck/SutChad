@@ -33,8 +33,19 @@
         <activity
             android:name=".Main4Activity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".Main5Activity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
+        <activity
+            android:name=".Main5Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".Main6Activity"
+            android:parentActivityName=".Main5Activity" />
+        <activity
+            android:name=".Main7Activity"
+            android:parentActivityName=".Main8Activity" />
+        <activity android:name=".Main8Activity"
+            android:parentActivityName=".Main5Activity"
+            ></activity>
     </application>
 
 </manifest>

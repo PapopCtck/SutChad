@@ -15,4 +15,6 @@
     </string>
     <string name="minimum_password">6</string>
     <string name="auth_failed">ErrorAuth</string>
+    <string name="name">test</string>
+    <string name="level">lvl</string>
 </resources>

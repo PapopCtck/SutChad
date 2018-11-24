@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -73,21 +74,35 @@ public class Main5Activity extends AppCompatActivity {
         Stats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Main5Activity.this, "Stats", Toast.LENGTH_SHORT).show();
+                String USN = username.getText().toString();
+                Intent i = new Intent(Main5Activity.this,Main8Activity.class);
+                i.putExtra("username",USN);
+                i.putExtra("UID",auth.getUid());
+                startActivity(i);
             }
         });
         AccSett = (ConstraintLayout) findViewById(R.id.constraintLayout3);
         AccSett.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Main5Activity.this, "Acc settings", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Main5Activity.this,Main6Activity.class));
             }
         });
         Logout = (ConstraintLayout) findViewById(R.id.constraintLayout4);
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Main5Activity.this, "Logout", Toast.LENGTH_SHORT).show();
+                if(TextUtils.equals(username.getText().toString(),"Guest")){
+                    String UID = auth.getCurrentUser().getUid();
+                    System.out.println(UID);
+                    mDatabase.child(UID).removeValue();
+                    Toast.makeText(Main5Activity.this, "Success!", Toast.LENGTH_SHORT).show();
+                    auth.signOut();
+                    startActivity(new Intent(Main5Activity.this, MainActivity.class));
+                }else {
+                    auth.signOut();
+                    startActivity(new Intent(Main5Activity.this, MainActivity.class));
+                }
             }
         });
     }
