@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Main2Activity extends AppCompatActivity {
     FirebaseAuth auth;
-    Button logout;
+    Button logout,userbtn;
     TextView username;
     private DatabaseReference mDatabase;
 
@@ -88,5 +88,13 @@ public class Main2Activity extends AppCompatActivity {
 
             }
         });
+        userbtn = (Button) findViewById(R.id.user);
+        userbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this,Main5Activity.class));
+            }
+        });
+
     }
 }
