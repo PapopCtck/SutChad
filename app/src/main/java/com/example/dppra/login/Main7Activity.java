@@ -68,7 +68,7 @@ public class Main7Activity extends AppCompatActivity {
                     long l = Long.parseLong(name);
                     System.out.println(name);
                     System.out.println(value);
-                    SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd  HH:mm");
+                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                     Date resultdate = new Date(l);
                     String date = sdf.format(resultdate);
                     row = new TableRow(getApplicationContext());
