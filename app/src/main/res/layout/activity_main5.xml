@@ -23,7 +23,7 @@
             android:id="@+id/exit"
             android:layout_width="31dp"
             android:layout_height="26dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:background="@null"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
             app:srcCompat="@drawable/baseline_account_circle_white_48" />
 
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/oldpassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

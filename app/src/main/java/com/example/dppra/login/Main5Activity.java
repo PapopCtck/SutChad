@@ -7,11 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +23,7 @@ public class Main5Activity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     TextView username;
     ConstraintLayout Stats,AccSett,Logout;
+    String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +34,7 @@ public class Main5Activity extends AppCompatActivity {
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
         exitbtn = (ImageButton) findViewById(R.id.exit);
+
         exitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +44,9 @@ public class Main5Activity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
-        username = (TextView) findViewById(R.id.username);
+        username = (TextView) findViewById(R.id.oldpassword);
+        username.setText("Loading....");
+        username.setVisibility(View.VISIBLE);
 
 
         if (auth.getCurrentUser() == null) {
@@ -59,7 +61,8 @@ public class Main5Activity extends AppCompatActivity {
 
                     String USN = dataSnapshot.getValue().toString();
                     username.setText(USN);
-                    username.setVisibility(View.VISIBLE);
+                    user = USN;
+
                 }
 
                 @Override
@@ -85,7 +88,14 @@ public class Main5Activity extends AppCompatActivity {
         AccSett.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Main5Activity.this,Main6Activity.class));
+                if(TextUtils.equals(user,"Guest")){
+                    Toast.makeText(Main5Activity.this,"Guest cannot edit account!",Toast.LENGTH_SHORT).show();
+                }
+                else{
+//                    System.out.println(user);
+                    startActivity(new Intent(Main5Activity.this,Main6Activity.class));
+                }
+
             }
         });
         Logout = (ConstraintLayout) findViewById(R.id.constraintLayout4);
@@ -94,7 +104,7 @@ public class Main5Activity extends AppCompatActivity {
             public void onClick(View v) {
                 if(TextUtils.equals(username.getText().toString(),"Guest")){
                     String UID = auth.getCurrentUser().getUid();
-                    System.out.println(UID);
+//                    System.out.println(UID);
                     mDatabase.child(UID).removeValue();
                     Toast.makeText(Main5Activity.this, "Success!", Toast.LENGTH_SHORT).show();
                     auth.signOut();

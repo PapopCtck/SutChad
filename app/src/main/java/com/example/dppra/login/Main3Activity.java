@@ -38,9 +38,9 @@ public class Main3Activity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
         regButton = (Button) findViewById(R.id.regbtn);
-        Inemail = (EditText) findViewById(R.id.email);
+        Inemail = (EditText) findViewById(R.id.username);
         Inpassword = (EditText) findViewById(R.id.password);
-        username = (EditText) findViewById(R.id.username);
+        username = (EditText) findViewById(R.id.oldpassword);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         backbtn = (ImageButton) findViewById(R.id.backbtn);
         backbtn.setOnClickListener(new View.OnClickListener() {

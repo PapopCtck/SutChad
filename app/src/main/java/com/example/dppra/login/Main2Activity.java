@@ -8,36 +8,33 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
+//import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.AuthResult;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+//import com.google.firebase.database.DataSnapshot;
+//import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+//import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.face.FirebaseVisionFace;
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetector;
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -47,10 +44,11 @@ import java.util.Locale;
 
 public class Main2Activity extends AppCompatActivity {
     FirebaseAuth auth;
-    Button logout, userbtn, button;
-    TextView username, textView;
-    ImageView imageView;
-    public String fileToFirebase;
+//    Button button;
+    TextView textView;
+    ImageView imageView,background;
+    ImageButton userbtn;
+    FloatingActionButton button;
     public static final int REQUEST_IMAGE = 100;
     public static final int REQUEST_PERMISSION = 200;
     private String imageFilePath = "";
@@ -62,7 +60,7 @@ public class Main2Activity extends AppCompatActivity {
     public File takePhoto;
 
 
-    private DatabaseReference mDatabase,aDatabase,UID,TS;
+    private DatabaseReference mDatabase,aDatabase,UID;
 
 
     @Override
@@ -73,37 +71,43 @@ public class Main2Activity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
         aDatabase = FirebaseDatabase.getInstance().getReference("datas");
         UID = aDatabase.child(auth.getUid());
+        View decorView = getWindow().getDecorView();
+
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
 
-        username = (TextView) findViewById(R.id.username);
+//        username = (TextView) findViewById(R.id.username);
         button = findViewById(R.id.button);
         imageView = findViewById(R.id.image);
         textView = findViewById(R.id.textView);
+        background = findViewById(R.id.imageView9);
 
 
         if (auth.getCurrentUser() == null) {
             startActivity(new Intent(Main2Activity.this, MainActivity.class));
             finish();
-        } else {
-            final String UID = auth.getCurrentUser().getUid();
-            DatabaseReference ref = mDatabase.child(UID);
-            ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                    String USN = dataSnapshot.getValue().toString();
-                    username.setText("Welcome : " + USN);
-                    username.setVisibility(View.VISIBLE);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
-
         }
+//          else {
+////            final String UID = auth.getCurrentUser().getUid();
+////            DatabaseReference ref = mDatabase.child(UID);
+////            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+////                @Override
+////                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+////
+////                    String USN = dataSnapshot.getValue().toString();
+////                    username.setText("Welcome : " + USN);
+////                    username.setVisibility(View.VISIBLE);
+////                }
+////
+////                @Override
+////                public void onCancelled(@NonNull DatabaseError databaseError) {
+////
+////                }
+//            });
+//
+//
+//        }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
                 PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
@@ -124,28 +128,28 @@ public class Main2Activity extends AppCompatActivity {
         });
 
 
-        logout = (Button) findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.equals(username.getText().toString(), "Welcome : Guest")) {
-                    String UID = auth.getCurrentUser().getUid();
-                    System.out.println(UID);
-                    mDatabase.child(UID).removeValue();
-                    Toast.makeText(Main2Activity.this, "Success!", Toast.LENGTH_SHORT).show();
-                    auth.signOut();
-                    startActivity(new Intent(Main2Activity.this, MainActivity.class));
-                } else {
-                    auth.signOut();
-                    startActivity(new Intent(Main2Activity.this, MainActivity.class));
-                }
-
-
-//                finish();
-
-            }
-        });
-        userbtn = (Button) findViewById(R.id.user);
+//        logout = (Button) findViewById(R.id.logout);
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (TextUtils.equals(username.getText().toString(), "Welcome : Guest")) {
+//                    String UID = auth.getCurrentUser().getUid();
+////                    System.out.println(UID);
+//                    mDatabase.child(UID).removeValue();
+//                    Toast.makeText(Main2Activity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                    auth.signOut();
+//                    startActivity(new Intent(Main2Activity.this, MainActivity.class));
+//                } else {
+//                    auth.signOut();
+//                    startActivity(new Intent(Main2Activity.this, MainActivity.class));
+//                }
+//
+//
+////                finish();
+//
+//            }
+//        });
+        userbtn = (ImageButton) findViewById(R.id.user);
         userbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,7 +192,9 @@ public class Main2Activity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         imageView.setImageURI(Uri.parse(imageFilePath));
+        textView.setVisibility(View.VISIBLE);
         textView.setText("Loading");
+        background.setVisibility(View.INVISIBLE);
         if (requestCode == REQUEST_IMAGE) {
             if (resultCode == RESULT_OK) {
 //                imageView.setImageURI(Uri.parse(imageFilePath));
@@ -249,5 +255,18 @@ public class Main2Activity extends AppCompatActivity {
         imageFilePath = image.getAbsolutePath();
 
         return image;
+    }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
     }
 }

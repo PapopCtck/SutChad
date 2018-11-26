@@ -34,7 +34,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity" />
+        <activity android:name=".Main2Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity
             android:name=".Main3Activity"
             android:screenOrientation="portrait"
@@ -48,11 +50,15 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Main6Activity"
-            android:parentActivityName=".Main5Activity" />
+            android:parentActivityName=".Main5Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity
             android:name=".Main7Activity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".Main8Activity" />
         <activity android:name=".Main8Activity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".Main5Activity"
             ></activity>
         <provider

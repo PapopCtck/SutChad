@@ -3,27 +3,21 @@ package com.example.dppra.login;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -66,8 +60,8 @@ public class Main7Activity extends AppCompatActivity {
                     String name = ds.getKey();
                     String value = ds.getValue().toString();
                     long l = Long.parseLong(name);
-                    System.out.println(name);
-                    System.out.println(value);
+//                    System.out.println(name);
+//                    System.out.println(value);
                     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                     Date resultdate = new Date(l);
                     String date = sdf.format(resultdate);

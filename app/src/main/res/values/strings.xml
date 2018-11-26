@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Login</string>
+    <string name="app_name">SutChad</string>
     <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -14,7 +14,7 @@
         completions."
     </string>
     <string name="minimum_password">6</string>
-    <string name="auth_failed">ErrorAuth</string>
+    <string name="auth_failed">Credential wrong</string>
     <string name="name">test</string>
     <string name="level">lvl</string>
 </resources>

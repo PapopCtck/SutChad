@@ -21,6 +21,7 @@ public class Main4Activity extends AppCompatActivity {
         switch (orientation){
             case 1:
                 Toast.makeText(this, "portrait", Toast.LENGTH_LONG).show();
+                System.out.println("ROTATE!");
 
                 break;
             case 2:
@@ -42,6 +43,7 @@ public class Main4Activity extends AppCompatActivity {
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Toast.makeText(this, "portrait", Toast.LENGTH_LONG).show();
+            System.out.println("ROTATE!");
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
             startActivity(new Intent(Main4Activity.this,Main2Activity.class));
         }
